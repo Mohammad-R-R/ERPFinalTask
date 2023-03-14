@@ -1,0 +1,32 @@
+{% include "index.html" %}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Product Movement Report</title>
+
+</head>
+<body>
+	<h1>Product Movement Report</h1>
+	<table class="table table-dark">
+		<thead>
+			<tr>
+				<th>Location</th>
+				{% for product in products %}
+					<th>{{ product[1] }}</th>
+				{% endfor %}
+			</tr>
+		</thead>
+		<tbody>
+			{% for location in locations %}
+				<tr>
+					<td>{{ location[1] }}</td>
+					{% for product in products %}
+						<td>{{ data.get(location[0], {}).get(product[0], 0) }}</td>
+					{% endfor %}
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</body>
+</html>
